@@ -1,4 +1,4 @@
-package dev.java10x.NinjaRegistry.controller;
+package dev.java10x.NinjaRegistry.ninja.controller;
 
 import org.springframework.web.bind.annotation.*;
 

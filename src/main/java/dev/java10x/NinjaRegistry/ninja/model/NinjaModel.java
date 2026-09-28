@@ -1,5 +1,6 @@
-package dev.java10x.NinjaRegistry.model;
+package dev.java10x.NinjaRegistry.ninja.model;
 
+import dev.java10x.NinjaRegistry.mission.model.MissionModel;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,6 +13,10 @@ public class NinjaModel {
     private String name;
     private String email;
     private int age;
+
+    @ManyToOne
+    @JoinColumn(name = "missions_id")
+    private MissionModel missions;
 
     public NinjaModel() {
     }
