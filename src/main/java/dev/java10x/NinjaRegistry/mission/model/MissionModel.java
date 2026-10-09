@@ -18,9 +18,10 @@ public class MissionModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "ninja_name")
     private String name;
+    @Column(name = "ninja_rank")
     private MissionRank rank;
-
     @OneToMany(mappedBy = "missions")
     private List<NinjaModel> ninjas;
 }
