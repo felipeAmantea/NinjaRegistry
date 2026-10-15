@@ -26,4 +26,8 @@ public class NinjaService {
     public NinjaModel findById(Long id) {
         return ninjaRepository.findById(id).orElseThrow(() -> new RuntimeException("Ninja not found"));
     }
+
+    public void deleteNinjaById(Long id) {
+        ninjaRepository.deleteById(id);
+    }
 }
