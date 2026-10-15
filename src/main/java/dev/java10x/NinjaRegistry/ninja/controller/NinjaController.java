@@ -1,10 +1,20 @@
 package dev.java10x.NinjaRegistry.ninja.controller;
 
+import dev.java10x.NinjaRegistry.ninja.model.NinjaModel;
+import dev.java10x.NinjaRegistry.ninja.service.NinjaService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/ninjas")
 public class NinjaController {
+
+    private final NinjaService ninjaService;
+
+    public NinjaController(NinjaService ninjaService) {
+        this.ninjaService = ninjaService;
+    }
 
     @GetMapping("/welcome")
     public String welcome() {
@@ -12,13 +22,18 @@ public class NinjaController {
     }
 
     @PostMapping
-    public String createNinja() {
-        return "createNinja";
+    public NinjaModel createNinja(@RequestBody NinjaModel ninjaModel) {
+        return ninjaService.createNinja(ninjaModel);
+    }
+
+    @GetMapping("/all")
+    public List<NinjaModel> getAllNinja() {
+        return ninjaService.getAllNinja();
     }
 
     @GetMapping("/{id}")
-    public String getNinjaById(@PathVariable String id) {
-        return "getNinjaById";
+    public NinjaModel getNinjaById(@PathVariable Long id) {
+        return ninjaService.findById(id);
     }
 
     @PutMapping("/{id}")

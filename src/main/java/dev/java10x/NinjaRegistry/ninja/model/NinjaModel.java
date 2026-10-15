@@ -20,6 +20,9 @@ public class NinjaModel {
     @Column(unique = true)
     private String email;
     private int age;
+    @Column(name = "rank")
+    @Enumerated(EnumType.STRING)
+    private NinjaRank rank;
     @ManyToOne
     @JoinColumn(name = "missions_id")
     private MissionModel missions;
