@@ -1,5 +1,6 @@
 package dev.java10x.NinjaRegistry.mission.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.java10x.NinjaRegistry.ninja.model.NinjaModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,5 +25,6 @@ public class MissionModel {
     @Enumerated(EnumType.STRING)
     private MissionRank rank;
     @OneToMany(mappedBy = "missions")
+    @JsonIgnore
     private List<NinjaModel> ninjas;
 }
