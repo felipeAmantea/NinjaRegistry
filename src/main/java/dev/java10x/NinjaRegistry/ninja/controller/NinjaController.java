@@ -37,8 +37,8 @@ public class NinjaController {
     }
 
     @PutMapping("/{id}")
-    public String modifyNinja(@PathVariable String id) {
-        return "modifyNinja";
+    public NinjaModel modifyNinja(@PathVariable Long id, @RequestBody NinjaModel ninjaModel) {
+        return ninjaService.updateNinja(id, ninjaModel);
     }
 
     @DeleteMapping("/{id}")

@@ -5,6 +5,7 @@ import dev.java10x.NinjaRegistry.ninja.repository.NinjaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NinjaService {
@@ -29,5 +30,13 @@ public class NinjaService {
 
     public void deleteNinjaById(Long id) {
         ninjaRepository.deleteById(id);
+    }
+
+    public NinjaModel updateNinja(Long id, NinjaModel ninjaModel) {
+        if (ninjaRepository.existsById(id)) {
+            ninjaModel.setId(id);
+            return ninjaRepository.save(ninjaModel);
+        }
+        return null;
     }
 }
