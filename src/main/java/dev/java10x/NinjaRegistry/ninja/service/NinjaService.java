@@ -32,8 +32,8 @@ public class NinjaService {
     }
 
     public NinjaDTO findById(Long id) {
-        NinjaModel ninja = ninjaRepository.findById(id).orElseThrow(() -> new RuntimeException("Ninja not found"));
-        return ninjaMapper.map(ninja);
+        Optional<NinjaModel> ninjaPorId = ninjaRepository.findById(id);
+        return ninjaPorId.map(ninjaMapper::map).orElse(null);
     }
 
     public void deleteNinjaById(Long id) {
