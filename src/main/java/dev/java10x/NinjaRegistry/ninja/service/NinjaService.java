@@ -7,6 +7,7 @@ import dev.java10x.NinjaRegistry.ninja.repository.NinjaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NinjaService {
@@ -40,9 +41,12 @@ public class NinjaService {
     }
 
     public NinjaDTO updateNinja(Long id, NinjaDTO ninjaDTO) {
-        if (ninjaRepository.existsById(id)) {
-            NinjaModel ninja = ninjaMapper.map(ninjaDTO);
-            return ninjaMapper.map(ninjaRepository.save(ninja));
+        Optional<NinjaModel> ninja = ninjaRepository.findById(id);
+        if (ninja.isPresent()) {
+            NinjaModel updatedNinja = ninjaMapper.map(ninjaDTO);
+            updatedNinja.setId(id);
+            NinjaModel savedNinja = ninjaRepository.save(updatedNinja);
+            return ninjaMapper.map(savedNinja);
         }
         return null;
     }
